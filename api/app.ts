@@ -8,13 +8,13 @@
  * Change a variety of settings
  */
 
-// import { settings } from 'nexus'
-//
-// settings.change({
-//   server: {
-//     port: 4001
-//   }
-// })
+import { settings } from 'nexus'
+
+settings.change({
+  server: {
+    port: 4001
+  }
+})
 
 /**
  * Add some schema middleware

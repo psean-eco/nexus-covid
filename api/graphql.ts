@@ -1,4 +1,5 @@
 import { schema } from "nexus";
+import { countryStatsResolver } from "./countryResolver";
       
 schema.addToContext(req => {
   return {
@@ -6,15 +7,27 @@ schema.addToContext(req => {
       worlds: [
         { id: "1", population: 6_000_000, name: "Earth" },
         { id: "2", population: 0, name: "Mars" }
-      ]
+      ],
     }
   }
 })
+
+
       
+schema.objectType({
+  name: "Country",
+  definition(t) {
+    t.string("country")
+    t.string("confirmedDeaths")
+    t.string("confirmedCases")
+    t.string("recovered")
+
+  }
+})
 schema.objectType({
   name: "World",
   definition(t) {
-    t.id("id")
+    t.id("name")
     t.string("name")
     t.float("population")
   }
@@ -36,6 +49,7 @@ schema.queryType({
         return world
       }
     })
+
       
     t.list.field('worlds', {
       type: 'World',
@@ -43,5 +57,12 @@ schema.queryType({
         return ctx.memoryDB.worlds
       } 
     })
+    t.list.field('countries', {
+      type: 'Country',
+      resolve: countryStatsResolver
+    })
   }
 })
+
+
+

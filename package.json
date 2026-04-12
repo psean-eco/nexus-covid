@@ -2,7 +2,7 @@
   "name": "gql-cli",
   "license": "UNLICENSED",
   "dependencies": {
-    "axios": "^1.13.5",
+    "axios": "^1.15.0",
     "nexus": "0.21.0"
   },
   "scripts": {
